@@ -3,8 +3,6 @@
     import { Datatable } from "svelte-simple-datatables";
     import * as data from "./course_catalog.json";
 
-   
-
     const settings = {
         columnFilter: true,
         css: false,
@@ -12,12 +10,12 @@
     };
     let rows;
 
-    console.log(data);
+    // console.log(data);
 </script>
 
 <div>
     <!-- <pre>{JSON.stringify(data)}</pre> -->
-    <Datatable {settings} {data} bind:dataRows={rows}>
+    <!-- <Datatable {settings} {data} bind:dataRows={rows}>
         <thead>
             <th data-key="n">Number</th>
             <th data-key="t">Title</th>
@@ -25,6 +23,7 @@
         </thead>
         <tbody>
             {#if rows}
+            {console.log(data)}
                 {#each Object.entries(data) as [subject, courses]}
                     {#each courses as course}
                     <tr>
@@ -36,7 +35,25 @@
                 {/each}
             {/if}
         </tbody>
-    </Datatable>
+    </Datatable> -->
+    <pre>{JSON.stringify(Object.entries(data))}</pre>
+    <table>
+        <tr>
+        <th>Number</th>
+        <th>Title</th>
+        <th>Credits</th>
+        </tr>
+        {#each Object.entries(data) as [subject, courses]}
+        {console.log(courses)}
+            {#each courses as course}
+                <tr>
+                    <td>{subject}</td>
+                    <td>{subject}</td>
+                    <td>{subject}</td>
+                </tr>
+            {/each}
+        {/each}
+    </table>
 </div>
 
 <style>
